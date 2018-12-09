@@ -1,0 +1,8 @@
+<!--startup.wxml-->
+<view class="container">
+
+  <view>
+    <image class="logo" src="img/logo.png"></image>
+  </view>
+  
+</view>
