@@ -37,7 +37,7 @@ Page({
       wx.reLaunch({ //关闭当前页面，跳转到应用内的某个页面
         url: "/pages/index/index"
       })
-    }, 1000);
+    }, 2000);
   },
 
   
