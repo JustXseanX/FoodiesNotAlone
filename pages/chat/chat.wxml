@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class='container'>
+  <button bindtap='updateMessage'>更新</button>
+  <view class='block'>
+    <input class='inputBox' bindinput='inputUpdate' value='{{inputText}}' maxlength='10'></input>
+    <view class='inputBoxButton' bindtap='sendMessage'>发送</view>
+  </view>
+</view>

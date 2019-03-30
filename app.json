@@ -3,7 +3,8 @@
     "pages/startup/startup",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/scan/scan"
+    "pages/scan/scan",
+    "pages/chat/chat"
   ],
   "window": {
     "backgroundTextStyle": "light",

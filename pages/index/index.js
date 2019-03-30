@@ -1,4 +1,4 @@
-//index.js
+//pages/index/index.js
 //获取应用实例
 const app = getApp()
 
@@ -38,23 +38,71 @@ Page({
         }
       })
     }
+    //websocket接受信息
+    wx.onSocketMessage(function (res) {
+      var obj = JSON.parse(res.data);
+      if (obj.opcode == "tips")
+        console.log("服务器：", obj.text);
+      else if (obj.opcode == "getMessage")
+        console.log("收到消息：", obj.content);
+    })
+
+    var pack = {
+      "opcode": "online",
+      "session3rd": wx.getStorageSync('session3rd')
+    }
+    wx.sendSocketMessage({
+      data: JSON.stringify(pack),
+      success: function (res) {
+        console.log("本地：上线消息已发给服务器")
+      }
+    })
+  },
+
+  onReady: function(){
     
   },
-  
+
+  jump: function(){
+    wx.navigateTo({
+      url: '../chat/chat?target=1',
+    })
+  },
+
   getUserInfo: function(e) {
     const self = this
-    console.log(e)
     wx.getUserInfo({
       success(res) {
-        app.globalData.userInfo = e.detail.userInfo
+        app.globalData.userInfo = res.userInfo
         self.setData({
-          userInfo: e.detail.userInfo,
+          userInfo: res.userInfo,
           hasUserInfo: true,
           userhead: res.userInfo.avatarUrl,
           text: "已登录"
         })
+      
+        wx.request({
+          url: 'http://45.40.200.208/getUserInfo.php',
+          data: {
+            userInfo: res.userInfo,
+            session3rd: wx.getStorageSync('session3rd')
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          method: 'POST',
+          success(res) {
+            console.log("本地：用户数据获取成功，并已发送至服务器")
+          },
+         
+        })
       },
+      fail() {
+        console.log("本地：用户数据获取失败")
+      }
     })
   },
-
+  fuck: function() {
+    wx.closeSocket()
+  }
 })
