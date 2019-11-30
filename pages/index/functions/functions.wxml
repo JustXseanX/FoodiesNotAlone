@@ -1,0 +1,10 @@
+<!--pages/functions/functions.wxml-->
+<view class='container'>
+  <image class='bg' src='/resources/UI/food1.jpg'></image>
+  <view class='func-table'>
+    <view class='func' wx:key wx:for='{{funcList}}'  bindtap='clickFunc' data-url='{{item.url}}'>
+      <image src='{{item.iconPath}}'></image>
+      <view>{{item.funcName}}</view>
+    </view>
+  </view>
+</view>

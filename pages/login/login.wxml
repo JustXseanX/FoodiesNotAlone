@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="body">
+    <image class="bg_img" src="/resources/UI/login.jpg"></image>
+    <image class="user_img" src="{{userImg}}"></image>
+    <button class="get_button" open-type="getUserInfo" bindgetuserinfo="loginButton">{{text}}</button>
+    <!--登陆按钮，登陆后信息会发送到bindgetuserinfo对应函数-->       
+  </view>
+</view>

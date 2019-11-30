@@ -1,0 +1,6 @@
+<!--pages/functions/foodMap/foodMap.wxml-->
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" show-location="true" enable-zoom="false" markers="{{markers}}">
+  <cover-view>
+    悬浮文字
+  </cover-view>
+</map>

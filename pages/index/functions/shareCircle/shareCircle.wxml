@@ -1,0 +1,2 @@
+<!--pages/functions/sharedCircle/sharedCircle.wxml-->
+<text>{{friendsCircle}}</text>

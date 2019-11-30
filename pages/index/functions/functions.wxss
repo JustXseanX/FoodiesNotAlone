@@ -1,0 +1,56 @@
+/* pages/functions/functions.wxss */
+page{
+  height: 100%;
+}
+
+.container{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.func-table{
+  background-color: #191;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+}
+
+.func {
+  z-index: 1;
+  height: 200rpx;
+  width: 120rpx;
+  margin: 20rpx;
+  padding: 0;
+  border: 10rpx block white;
+  border-radius: 20rpx;
+  /* background-color: #abc; */
+  text-align: center;
+  line-height: 30rpx;
+}
+
+.func image{
+  height: 120rpx;
+  width: 120rpx;
+  margin: 0;
+}
+
+.func view{
+  margin-top: 10rpx;
+  overflow: hidden;
+  padding: 10rpx;
+  font-size: 30rpx;
+  color: #ffffff;
+  height: 30rpx;
+  width: 100rpx;
+  background-color: #00000080;
+}
+
+.bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
