@@ -25,7 +25,7 @@ Page({
             'session3rd': wx.getStorageSync('session3rd'),
             'userInfo': res.userInfo
           },
-          method: 'POST',
+          method: 'GET',
           success(res) {
             console.log("本地：服务器内用户信息更新成功")
             // 跳转到主页

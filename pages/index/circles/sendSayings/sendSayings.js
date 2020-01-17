@@ -52,63 +52,38 @@ Page({
   },
 
   //图片上传
-  img_upload: function () {
-    let that = this;
-    let img_url = that.data.img_url;
-    let img_url_ok = [];
+  img_upload: function (sayingId) {
+    
+    let that = this
+    let img_url = that.data.img_url
+    let img_url_ok = []
     //由于图片只能一张一张地上传，所以用循环
     for (let i = 0; i < img_url.length; i++) {
+      console.log('本地：上传图片  ' + img_url[i] + ' 到说说' + sayingId)
       wx.uploadFile({
         //路径填你上传图片方法的地址
-        url: 'http://wechat.homedoctor.com/Moments/upload_do',
+        url: 'https://www.foodiesnotalone.cn/uploadImage.php',
         filePath: img_url[i],
-        name: 'file',
+        name: 'image',
         formData: {
-          'user': 'test'
+          'session3rd': wx.getStorageSync('session3rd'),
+          'sayingId': sayingId
         },
         success: function (res) {
-          console.log('上传成功');
+          var data = JSON.parse(res.data)
+          console.log('服务器：上传完成 ' + data.url)
+          console.log(data)
           //把上传成功的图片的地址放入数组中
-          img_url_ok.push(res.data)
-          //如果全部传完，则可以将图片路径保存到数据库
-          if (img_url_ok.length == img_url.length) {
-            var userid = wx.getStorageSync('userid');
-            var content = that.data.content;
-            wx.request({
-              url: 'http://wechat.homedoctor.com/Moments/adds',
-              data: {
-                user_id: userid,
-                images: img_url_ok,
-                content: content,
-              },
-              success: function (res) {
-                if (res.data.status == 1) {
-                  wx.hideLoading()
-                  wx.showModal({
-                    title: '提交成功',
-                    showCancel: false,
-                    success: function (res) {
-                      if (res.confirm) {
-                        wx.navigateTo({
-                          url: '/pages/my_moments/my_moments',
-                        })
-                      }
-                    }
-                  })
-                }
-              }
-            })
-          }
-        },
-        fail: function (res) {
-          console.log('上传失败')
+          img_url_ok.push(data.url)
         }
       })
     }
   },
 
   sendSayings: function (e) {
-    console.log("本地：发送说说：", this.data.content);
+    var that = this
+
+    console.log("本地：发送说说：", this.data.content)
     var text = this.data.content;
     if (text == '') {
       wx.showToast({
@@ -117,6 +92,7 @@ Page({
       })
       return -1;
     }
+
     //发送说说
     wx.request({
       url: 'https://www.foodiesnotalone.cn/friendService.php',
@@ -128,8 +104,11 @@ Page({
       method: 'POST',
       success(res) {
         console.log("服务器：", res.data)
+        //发送图片
+        that.img_upload(res.data['new_saying']['id']);
       }
     })
+    
     this.setData({
       sayingContent: ''
     })

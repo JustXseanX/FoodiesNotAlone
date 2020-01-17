@@ -1,1 +1,98 @@
 /* pages/functions/sharedCircle/sharedCircle.wxss */
+page {
+  background-color: #ffffff;
+}
+.head{
+  background-color: #0aa02b;
+  height: 100rpx;
+}
+.inputRoom {
+  width: 100vw;
+  height: 16vw;
+  border-top: 1px solid #cdcdcd;
+  background-color: #f1f1f1;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+input {
+  width: 76vw;
+  height: 9.33vw;
+  background-color: #fff;
+  border-radius: 40rpx;
+  margin-left: 2vw;
+  padding: 0 3vw;
+  font-size: 28rpx;
+  color: #444;
+}
+
+.leftMsg {
+  font-size: 35rpx;
+  color: #444;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #fff;
+  margin-left: -1.6vw;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+
+.rightMsg {
+  font-size: 35rpx;
+  color: #444;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #96EB6A;
+  margin-right: -1.6vw;
+  border-radius: 10rpx;
+  z-index: 10;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+}
+.but{
+  font-size: 35rpx;
+  color: #444;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+}
+.time{
+  font-size: 35rpx;
+  color: #444;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #fff;
+  border-radius: 10rpx;
+  z-index: 10;
+  left: 100vw;
+}
+.love{
+  width: 8vw;
+  height: 8vw;
+}
+.btn1{
+  background-color:white;
+}
+.image{
+  width:31%;
+  height: 100px;
+  padding: 2px
+}
+ 
+.moment_img{
+  width: 65px;
+  height: 65px;
+}
+ 
+.image_content{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px
+}
+button::after{
+  border: none;
+}

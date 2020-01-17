@@ -24,7 +24,7 @@ Page({
         'opcode': 'getFriendsCircle',
         'session3rd': wx.getStorageSync('session3rd'),
       },
-      method: 'POST',
+      method: 'GET',
       success(res) {
         console.log("服务器：", res.data)
         //显示数据
@@ -73,11 +73,18 @@ Page({
         'session3rd': wx.getStorageSync('session3rd'),
         'id': msgList[index].id
       },
-      method: 'POST',
+      method: 'GET',
       success(res) {
         console.log("服务器：", res.data)
         that.getFriendsCircle() // 完成后更新
       }
+    })
+  },
+
+  clickAvatar: function(e){
+    var index = e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '/pages/friend/friend?id=' + msgList[index].userId,
     })
   }
 })

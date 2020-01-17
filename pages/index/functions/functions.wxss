@@ -10,7 +10,7 @@ page{
 }
 
 .func-table{
-  background-color: #191;
+  background-color: white;
   height: 100%;
   width: 100%;
   display: flex;
@@ -21,15 +21,13 @@ page{
 
 .func {
   z-index: 1;
-  height: 200rpx;
+  height: 220rpx;
   width: 120rpx;
   margin: 20rpx;
   padding: 0;
   border: 10rpx block white;
   border-radius: 20rpx;
   /* background-color: #abc; */
-  text-align: center;
-  line-height: 30rpx;
 }
 
 .func image{
@@ -39,12 +37,17 @@ page{
 }
 
 .func view{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
   margin-top: 10rpx;
   overflow: hidden;
   padding: 10rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
+  line-height: 28rpx;
   color: #ffffff;
-  height: 30rpx;
+  height: 50rpx;
   width: 100rpx;
   background-color: #00000080;
 }

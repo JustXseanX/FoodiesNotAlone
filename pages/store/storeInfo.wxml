@@ -1,0 +1,3 @@
+<!--pages/store/storeInfo.wxml-->
+<text>{{info}}</text>
+

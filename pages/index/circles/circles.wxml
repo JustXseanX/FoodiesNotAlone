@@ -1,18 +1,9 @@
 <!--pages/index/circles/circles.wxml-->
-<!-- <view class='container'>
-  <view class='buttonSet'>
-    <button bindtap='sendSayings'>发送说说</button>
-  </view>
-  <scroll-view style='height: 100%;width:100%; background-color: #abc;bottom: 0;' scroll-y="true">
-    <text decode="{{true}}">{{friendsCircle}}</text>
-  </scroll-view>
-</view> -->
-
 <view>
   <view style='height:7vw'>
     <view >
       <button bindtap='sendSayings' class='btn1' style='display:flex;flex-direction:row-reverse;'>
-        <image style='height:6vw;width:8vw;'  src='/resources/UI/add_saying.png'></image>
+        <image style='height:6vw;width:8vw;'  src='https://www.foodiesnotalone.cn/resources/UI/add_saying.png'></image>
       </button>
     </view>
   </view>
@@ -21,14 +12,14 @@
     <block wx:key wx:for='{{msgList}}' wx:for-index="index">
       <view id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
         <view style='width: 11vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
-          <image style='width: 11vw;height: 11vw;' src='{{item.userImg}}' ></image>
+          <image style='width: 11vw;height: 11vw;' src='{{item.userImg}}' bindtap='clickAvatar' data-index='{{index}}'></image>
         </view>
         <view style='width:4vw;height:11vw'></view>
         <view class='leftMsg'>
           <view>{{item.text}}</view>
           <view class="image_content">
-            <view class='image' wx:for="{{item.image_link}}" wx:for-item="dimg">
-              <image bindtap='clickImg'  data-src='{{dimg}}' data-list='{{item.image_link}}' class="moment_img" src="{{dimg}}"></image>
+            <view class='image' wx:for="{{item.imgsList}}" wx:for-item="dimg">
+              <image bindtap='clickImg'  data-src='{{dimg}}' data-list='{{item.imgsList}}' class="moment_img" src="{{dimg}}"></image>
             </view>
           </view>
         </view>
@@ -38,8 +29,8 @@
           <view style='width: 11vw; height: 11vw; margin-left: 3vw; display: flex; align-items: center; z-index: 9;'></view>
           <view  class='time'>{{item.sendTime}}</view>
           <button bindtap='clickLike' data-index='{{index}}' class='btn1'>
-             <image wx:if="{{item.islike}}" class='love' src='/resources/UI/like2.png'  ></image>   
-             <image wx:else class='love' src='/resources/UI/like1.png'  ></image>
+             <image wx:if="{{item.islike}}" class='love' src='https://www.foodiesnotalone.cn/resources/UI/like2.png'  ></image>   
+             <image wx:else class='love' src='https://www.foodiesnotalone.cn/resources/UI/like1.png'  ></image>
           </button>
        </view>
        <view class='leftMsg'>——————————————————————————————————</view>

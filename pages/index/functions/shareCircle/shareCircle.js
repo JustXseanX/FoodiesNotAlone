@@ -1,18 +1,23 @@
 // pages/functions/sharedCircle/sharedCircle.js
-Page({
 
-  /**
-   * 页面的初始数据
-   */
+const app = getApp();
+var msgList = [];
+var keyHeight = 0;
+
+Page({
+ 
   data: {
-    friendsCircle: ""
+    scrollHeight: '100vh',
+    inputBottom: 0,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    this.getShareCircle()
+  },
+
+  getShareCircle: function () {
     var that = this
+    console.log("本地：获取分享圈说说");
     wx.request({
       url: 'https://www.foodiesnotalone.cn/functions/shareCircle.php',
       data: {
@@ -21,69 +26,57 @@ Page({
       method: 'POST',
       success(res) {
         console.log("服务器：", res.data)
-
-        var friendsCircleData = ''
-        res.data.sayings_list.forEach(function (saying) {
-          friendsCircleData += '来自：' + saying.userName + '\n' + '时间：' + saying.time.substring(0, 4) + '年' + saying.time.substring(4, 6) + '月' + saying.time.substring(6, 8) + '日 ' + saying.time.substring(8, 10) + ':' + saying.time.substring(10, 12) + ':' + saying.time.substring(12, 14) + '\n' + saying.content + '\n\n'
-          saying.reply.forEach(function (reply) {
-            friendsCircleData += '&nbsp;&nbsp;&nbsp;&nbsp;评论来自：' + reply.userName + '\n&nbsp;&nbsp;&nbsp;&nbsp;' + '时间：' + reply.time.substring(0, 4) + '年' + reply.time.substring(4, 6) + '月' + reply.time.substring(6, 8) + '日 ' + reply.time.substring(8, 10) + ':' + reply.time.substring(10, 12) + ':' + reply.time.substring(12, 14) + '\n&nbsp;&nbsp;&nbsp;&nbsp;' + reply.content + '\n\n'
-          })
-        })
+        //显示数据
+        msgList = res.data.sayings_list;
         that.setData({
-          friendsCircle: friendsCircleData
+          msgList
         })
-
-        console.log("本地：分享圈已显示")
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
-
+    this.getShareCircle();
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  toBackClick: function () {
+    wx.navigateBack({})
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  clickImg: function (e) {
+    var src = e.currentTarget.dataset.src;//获取data-src
+    var imgList = e.currentTarget.dataset.list;//获取data-list
+    //图片预览
+    wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: imgList // 需要预览的图片http链接列表
+    })
+  },
 
+  clickLike: function (e) {
+    var that = this
+    console.log("本地：点赞")
+    var index = e.currentTarget.dataset.index
+    wx.request({
+      url: 'https://www.foodiesnotalone.cn/friendService.php',
+      data: {
+        'opcode': 'clickLike',
+        'session3rd': wx.getStorageSync('session3rd'),
+        'id': msgList[index].id
+      },
+      method: 'GET',
+      success(res) {
+        console.log("服务器：", res.data)
+        that.getFriendsCircle() // 完成后更新
+      }
+    })
+  },
+
+  clickAvatar: function (e) {
+    var index = e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '/pages/friend/friend?id=' + msgList[index].userId,
+    })
   }
 })
+

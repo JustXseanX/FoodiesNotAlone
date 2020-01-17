@@ -44,9 +44,12 @@ Page({
     });
     var that = this
     const UPDATE_INTERVAL = 300
+  
+
     setInterval(function () { //定时更新消息
       that.updateMessage()
     }, UPDATE_INTERVAL)
+    
   },
 
   onReady: function () {
@@ -60,6 +63,8 @@ Page({
       }
 
     })
+    // 滑动到最底部
+    this.scrollToBottom();
   },
 
   updateMessage: function () {
@@ -70,6 +75,7 @@ Page({
       url: 'https://www.foodiesnotalone.cn/chat/getMessage.php',
       data: {
         "session3rd": wx.getStorageSync('session3rd'),
+        "get_history": false
       },
       method: 'POST',
       success(res) {
@@ -170,6 +176,13 @@ Page({
     this.setData({
       inputVal: e.detail.value
     })
-  }
+  },
+
+  scrollToBottom: function () {
+    var that = this
+    this.setData({
+      toView: 'msg-' + (that.data.msgList.length - 1),
+    })
+  },
 })
 

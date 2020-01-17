@@ -1,4 +1,6 @@
 // pages/index/friends/friends.js
+const app = getApp();
+
 Page({
   data: {
     HEARTBEAT_TIME: 55000,
@@ -56,6 +58,8 @@ Page({
     })
     // 获取好友列表
     this.getFriendsList();
+    // 获取历史消息
+    this.getHistoryMessage();
   },
   setFocus: function () {
     this.setData({
@@ -172,7 +176,7 @@ Page({
         'opcode': 'getFriendsList',
         'session3rd': wx.getStorageSync('session3rd')
       },
-      method: 'POST',
+      method: 'GET',
       success(res) {
         console.log("服务器：好友列表", res.data)
         //var updateGroups = that.data.groups; // 使用js内数据
@@ -183,6 +187,38 @@ Page({
         // console.log(updateGroups)
       },
 
+    })
+  },
+
+  getHistoryMessage: function () {
+    var that = this
+    //接收消息
+    console.log("本地：从服务器获取历史消息")
+    wx.request({
+      url: 'https://www.foodiesnotalone.cn/chat/getMessage.php',
+      data: {
+        "session3rd": wx.getStorageSync('session3rd'),
+        "get_history": true
+      },
+      method: 'POST',
+      success(res) {
+        //console.log("服务器：", res.data)
+        //显示消息
+        if (res.data.data.length > 0) console.log("本地：从服务器接受历史消息", res.data.data)
+        var msgList = that.data.msgList
+        res.data.data.forEach(function (message) {
+          // 为空则初始化为数组
+          if (!app.globalData.messagesList[message.fromId]){
+            app.globalData.messagesList[message.fromId] = []
+          }
+          // 添加
+          app.globalData.messagesList[message.fromId].push({
+            speaker: 'server',
+            contentType: 'text',
+            text: message.text
+          })
+        })
+      }
     })
   },
 })

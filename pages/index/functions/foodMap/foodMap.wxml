@@ -1,6 +1,4 @@
 <!--pages/functions/foodMap/foodMap.wxml-->
-<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" show-location="true" enable-zoom="false" markers="{{markers}}">
-  <cover-view>
-    悬浮文字
-  </cover-view>
-</map>
+<view class='container'>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" bindregionchange="regionChange" bindmarkertap="mapMarkerClick" scale="{{scale}}" show-scale="true"  show-location="true" enable-zoom="true" markers="{{markers}}"></map>
+</view>

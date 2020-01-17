@@ -17,7 +17,7 @@ Page({
             'opcode': 'getLogin',
             'code': res.code
           },
-          method: 'POST',
+          method: 'GET',
           success(res) {
             console.log("本地：获取用户信息以及生成3rd成功", res.data)
             // 存储session3rd

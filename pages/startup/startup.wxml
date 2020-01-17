@@ -1,4 +1,4 @@
 <!--startup.wxml-->
 <view class="container">
-  <image class="cover" src="/resources/UI/cover.jpg"></image>
+  <image class="cover" src="https://www.foodiesnotalone.cn/resources/UI/cover.jpg"></image>
 </view>

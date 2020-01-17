@@ -20,7 +20,7 @@ Page({
       },
       {
         iconPath: '/resources/UI/icon/func_recommend.png',
-        funcName: '美食推送、推荐',
+        funcName: '美食推荐',
         url: './'
       },
       {
@@ -51,7 +51,7 @@ Page({
       },
       {
         iconPath: '/resources/UI/icon/func_others.png',
-        funcName: '轰趴厨房、美食拓荒',
+        funcName: '其他', // 轰趴厨房、美食拓荒
         url: './'
       }
     ]
