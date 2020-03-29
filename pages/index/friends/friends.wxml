@@ -1,20 +1,27 @@
-<!-- <view class='head borderbe0 alic flex'>
-  <view class='flex box justc alic bgf ml10 borRad'>
-    <view class='flex box justc alic'>
-      <icon type="search" size="20" class=''/>
-      <input placeholder='搜索功能暂未开放' type='search' value='{{val}}' bindconfirm='search' class='{{focus?"flex1":"w"}}' bindfocus='setFocus' bindblur='setFocus'></input>
-    </view>
-  </view>  
-</view> -->
-<!-- <button bindtap="send" style="width:100px; height:200px; position: absolute; z-index:100;"></button> -->
+
 <view class='flex'>
     <scroll-view scroll-y class='flex' scroll-into-view="{{scrollIntoView}}" >
-      <block wx:for="{{groups}}" wx:for-item="group" wx:key="group_key">
-        <view class='groupName'>{{groups[index].groupName}}</view>
-        <view wx:for-class='flex' wx:for="{{group.list}}" wx:for-item="user"  wx:for-index="idx" bindtap="startChat" wx:key="user_key" data-id="{{user.friendId}}" data-name="{{user.userName}}" data-img="{{user.userImg}}">
+      <block wx:for="{{friends}}" wx:for-item="friendList" wx:key="group_key">
+        <view class='groupName'>{{friendList.groupName}}</view>
+        <view wx:if='{{friendList.list.length == 0}}' class='isempty'>
+          <text>你暂时还没有好友哦(●'◡'●)</text>
+        </view>
+        <view wx:for-class='flex' wx:for="{{friendList.list}}" wx:for-item="user"  wx:for-index="idx" bindtap="startChat" wx:key="user_key" data-id="{{user.friendId}}" data-name="{{user.userName}}" data-img="{{user.userImg}}">
           <view class='ground flex alic'>
             <image class="user-avatar-img" src="{{user.userImg}}"></image>
             <text class='user-name'>{{user.userName}}</text>
+          </view>
+        </view>
+      </block>
+      <block wx:for="{{groups}}" wx:for-item="groupList" wx:key="group_key">
+        <view class='groupName'>{{groupList.groupName}}</view>
+        <view wx:if='{{groupList.list.length == 0}}' class='isempty'>
+          <text>你暂时还没有群组哦(●'◡'●)</text>
+        </view>
+        <view wx:for-class='flex' wx:for="{{groupList.list}}" wx:for-item="group"  wx:for-index="idx" bindtap="startGroupChat" wx:key="user_key" data-id="{{group.id}}" data-name="{{group.name}}" data-img="{{group.img}}">
+          <view class='ground flex alic'>
+            <image class="user-avatar-img" src="{{group.img}}"></image>
+            <text class='user-name'>{{group.name}}</text>
           </view>
         </view>
       </block>

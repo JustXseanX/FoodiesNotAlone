@@ -1,40 +1,141 @@
-<!--pages/index/circles/circles.wxml-->
 <view>
-  <view style='height:7vw'>
-    <view >
-      <button bindtap='sendSayings' class='btn1' style='display:flex;flex-direction:row-reverse;'>
-        <image style='height:6vw;width:8vw;'  src='https://www.foodiesnotalone.cn/resources/UI/add_saying.png'></image>
-      </button>
+  <view class="head">
+    <!-- icon -->
+    <view class='iconBar' style="height:{{statusBarHeight}}px"> </view>
+
+    <!-- 标题栏 -->
+    <view class='titleBar'>
+      <view class='title' style="font-size:{{fontSizeSetting}}px">
+        <label>分享</label>
+      </view>
+      <view class='funcIcon'>
+        <view bindtap='sendSayings' style='height:26px;width:26px;'>
+          <image style='height:26px;width:26px;' src='https://www.foodiesnotalone.cn/resources/UI/icon/add.png'></image>
+        </view>
+        <view bindtap='refresh' style='height:26px;width:26px;'>
+          <image style='height:26px;width:26px;' src='https://www.foodiesnotalone.cn/resources/UI/icon/refresh.png'></image>
+        </view>
+      </view>
     </view>
   </view>
-  <scroll-view scroll-y scroll-into-view='{{toView}}' style='height: {{scrollHeight}};'>
-    <!-- <view class='scrollMsg'> -->
-    <block wx:key wx:for='{{msgList}}' wx:for-index="index">
-      <view id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
-        <view style='width: 11vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
-          <image style='width: 11vw;height: 11vw;' src='{{item.userImg}}' bindtap='clickAvatar' data-index='{{index}}'></image>
-        </view>
-        <view style='width:4vw;height:11vw'></view>
-        <view class='leftMsg'>
-          <view>{{item.text}}</view>
-          <view class="image_content">
-            <view class='image' wx:for="{{item.imgsList}}" wx:for-item="dimg">
-              <image bindtap='clickImg'  data-src='{{dimg}}' data-list='{{item.imgsList}}' class="moment_img" src="{{dimg}}"></image>
+  <!--导航按钮-->
+  <view class="navbar">
+      <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+  </view> 
+  <!--好友的-->
+  <view wx:if="{{currentTab==0}}">
+    <scroll-view class='page'>
+            <view class='CircleList' wx:for='{{circles}}' wx:for-index="index" wx:key='index'>
+              <view class='body-view'>
+                <view class='left-view'>
+                  <image class='user-icon' src='{{item.userImg}}'></image>
+                </view>
+                <view class='right-view'>
+                  <view class='user-name-view'>
+                    <label class='user-name'>{{item.userName}}</label>
+                  </view>
+                  <view class='user-content-view'>
+                    <text class='user-content'>{{item.text}}</text>
+                  </view>
+                  <view class='photo-view'>
+                    <view class='photo' wx:for='{{item.imgsList}}' style='width:{{photoWidth}}px;height:{{photoWidth}}px' wx:for-item="dimg" wx:key='dimg'>
+                      <image bindtap='clickImg' data-src='{{dimg}}' data-list='{{item.imgsList}}' src='{{dimg}}'></image>
+                    </view>
+                  </view>
+                  <view class='TDD-view'>
+                    <label>{{item.sendTime}}</label>
+                    <image wx:if="{{item.islike}}" style="height:25px;width:25px" bindtap='clickLike' data-id='{{item.id}}' src='https://www.foodiesnotalone.cn/resources/UI/icon/like2.png'></image>
+                    <image wx:else style="height:25px;width:25px" bindtap='clickLike' data-id='{{item.id}}'  src='https://www.foodiesnotalone.cn/resources/UI/icon/like1.png'></image>
+                    <image style="margin-left:15px;height:30px;width:30px" bindtap='writeComment' data-id='{{item.id}}' src='https://www.foodiesnotalone.cn/resources/UI/icon/wxdiscuss.png'></image>
+                  </view>
+                  <view class='zan-view'>
+                    <view class='trigon-view' wx:if='{{item.likedUser.length > 0}}'>
+                      <image mode='aspectFill' class='trigon' src='https://www.foodiesnotalone.cn/resources/UI/icon/trigon.png'></image>
+                    </view>
+                    <view class='zan-bg-view' wx:if='{{item.likedUser.length > 0}}'>
+                      <view class='zan-user-view' wx:for='{{item.likedUser}}' wx:key='item'>
+                        <label bindtap='TouchZanUser' data-name='{{item}}' class='zan-user'>{{item}}</label>
+                      </view>
+                      <view class='zan-user-view'>
+                        <label class='zan-user'>等人赞过</label>
+                      </view>
+                      
+                    </view>
+                    <view class='line'></view>
+                    <view class='discuss-view'>
+                      <view class='discuss' wx:for='{{item.reply}}' wx:key='id'>
+                        <label bindtap='TouchZanUser' data-id='{{item.id}}' class='discuss-user'>{{item.userName}}：</label>
+                        <label class='text'>{{item.text}}</label>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
             </view>
-          </view>
-        </view>
-       
-      </view>
-       <view style='display:flex'>
-          <view style='width: 11vw; height: 11vw; margin-left: 3vw; display: flex; align-items: center; z-index: 9;'></view>
-          <view  class='time'>{{item.sendTime}}</view>
-          <button bindtap='clickLike' data-index='{{index}}' class='btn1'>
-             <image wx:if="{{item.islike}}" class='love' src='https://www.foodiesnotalone.cn/resources/UI/like2.png'  ></image>   
-             <image wx:else class='love' src='https://www.foodiesnotalone.cn/resources/UI/like1.png'  ></image>
-          </button>
-       </view>
-       <view class='leftMsg'>——————————————————————————————————</view>
-    </block>
-    <view style='width: 100%; height: 18vw;'></view>
-  </scroll-view>
+    </scroll-view>
+  </view>
+         
+  <!--发现的-->
+  <view wx:elif="{{currentTab==1}}">
+    <scroll-view class='page'>
+            <view class='CircleList' wx:for='{{shareCircle}}' wx:for-index="index" wx:key='index'>
+              <view class='body-view'>
+                <view class='left-view'>
+                  <image class='user-icon' src='{{item.userImg}}'></image>
+                </view>
+                <view class='right-view'>
+                  <view class='user-name-view'>
+                    <label class='user-name'>{{item.userName}}</label>
+                  </view>
+                  <view class='user-content-view'>
+                    <text class='user-content'>{{item.text}}</text>
+                  </view>
+                  <view class='photo-view'>
+                    <view class='photo' wx:for='{{item.imgsList}}' style='width:{{photoWidth}}px;height:{{photoWidth}}px' wx:for-item="dimg" wx:key='dimg'>
+                      <image bindtap='clickImg' data-src='{{dimg}}' data-list='{{item.imgsList}}' src='{{dimg}}'></image>
+                    </view>
+                  </view>
+                  <view class='TDD-view'>
+                    <label>{{item.sendTime}}</label>
+                    <image wx:if="{{item.islike}}" style="height:25px;width:25px" bindtap='clickLike' data-id='{{item.id}}' src='https://www.foodiesnotalone.cn/resources/UI/icon/like2.png'></image>
+                    <image wx:else style="height:25px;width:25px" bindtap='clickLike' data-id='{{item.id}}'  src='https://www.foodiesnotalone.cn/resources/UI/icon/like1.png'></image>
+                    <image style="margin-left:15px;height:30px;width:30px" bindtap='writeComment' data-id='{{item.id}}' src='https://www.foodiesnotalone.cn/resources/UI/icon/wxdiscuss.png'></image>
+                  </view>
+                  <view class='zan-view'>
+                    <view class='trigon-view' wx:if='{{item.likedUser.length > 0}}'>
+                      <image mode='aspectFill' class='trigon' src='https://www.foodiesnotalone.cn/resources/UI/icon/trigon.png'></image>
+                    </view>
+                    <view class='zan-bg-view' wx:if='{{item.likedUser.length > 0}}'>
+                      <view class='zan-user-view' wx:for='{{item.likedUser}}' wx:key='item'>
+                        <label bindtap='TouchZanUser' data-name='{{item}}' class='zan-user'>{{item}}</label>
+                      </view>
+                      <view class='zan-user-view'>
+                        <label class='zan-user'>等人赞过</label>
+                      </view>
+                      
+                    </view>
+                    <view class='line'></view>
+                    <view class='discuss-view'>
+                      <view class='discuss' wx:for='{{item.reply}}' wx:key='id'>
+                        <label bindtap='TouchZanUser' data-id='{{item.id}}' class='discuss-user'>{{item.userName}}：</label>
+                        <label class='text'>{{item.text}}</label>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+    </scroll-view>
+  </view>
+
+
+
+  <view wx:if="{{isShow}}" class='inputRoom' style='bottom: {{inputBottom}}' bindblur='blur'>
+    <input bindconfirm='sendComment' adjust-position='true' value='{{inputVal}}' bindinput='input' bindblur='blur' focus='{{inputFocus}}'></input>
+    <button class='but' bindtap='sendComment' adjust-position='{{false}}'>
+      <text >发送</text>
+    </button>
+  </view>
 </view>

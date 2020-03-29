@@ -22,13 +22,16 @@ Page({
             console.log("本地：获取用户信息以及生成3rd成功", res.data)
             // 存储session3rd
             wx.setStorageSync('session3rd', res.data.session3rd)
-            // 建立ws链接
-            wx.connectSocket({
-              url: 'wss://www.foodiesnotalone.cn:2350',
-              success: function (res) {
-                console.log("本地：Websocket正在链接", res)
-              }
-            })
+            // 存储用户id
+            app.globalData.userId = res.data.id;
+            // // 建立ws链接
+            // wx.connectSocket({
+            //   url: 'wss://www.foodiesnotalone.cn:2350',
+            //   success: function (res) {
+            //     console.log("本地：Websocket正在链接", res)
+            //   }
+            // })
+
             // 检查登陆态
             wx.getSetting({
               success(res) {
@@ -53,7 +56,7 @@ Page({
                           console.log("本地：用户信息更新成功", res.data)
                           // 跳转到主页
                           wx.reLaunch({
-                            url: "/pages/index/friends/friends"
+                            url: "/pages/index/circles/circles"
                           })
                         }
                       })
@@ -73,11 +76,14 @@ Page({
                 }
               }
             })
+          },
+          fail(res){
+            console.log("本地：获取用户信息以及生成3rd失败！", res)
           }
         })
       },
       fail(res) {
-        console.log("本地：获取临时令牌失败", res.code)
+        console.log("本地：获取临时令牌失败", res)
       }
     })
   },

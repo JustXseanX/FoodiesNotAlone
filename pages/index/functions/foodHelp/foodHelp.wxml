@@ -1,0 +1,28 @@
+<!--pages/index/functions/foodHelp/foodHelp.wxml-->
+<scroll-view wx:for="{{preferences}}" wx:for-item="preference" wx:key="item" wx:for-index="index1" class="prefer" scroll-x="true">
+  <checkbox-group class="checkbox-group" >
+    <view wx:for="{{preference}}" wx:for-index="index2" wx:key="item.name">
+      <label class="{{item.checked?'checkbox checked':'checkbox'}}" bindtap='checkbox' data-index1="{{index1}}" data-index2="{{index2}}">
+        <checkbox value="{{item.name}}"  checked="{{item.checked}}"/>
+        <view>{{item.name}}</view>
+      </label>
+    </view>
+  </checkbox-group>
+</scroll-view>
+<scroll-view scroll-y> 
+  <block wx:key wx:for='{{Restaurant}}'>
+    <view class="item" bindtap="details" data-id="{{item.id}}">
+      <image class="img" src="{{item.img_src}}"></image>
+      <view class="attrib">
+        <view class="subitem">{{item.name}}</view>
+        <view class="subitem">
+          <image style="width:16px;height:16px" src="https://www.foodiesnotalone.cn/resources/UI/icon/fire.png"></image>
+          <text style="font-size:13px">热度：{{item.heat}}</text>
+        </view>
+        <view class="sub_item">
+          <text style="font-size:13px">  地址：{{item.address}}</text>
+        </view>
+      </view>
+    </view>  
+  </block>
+</scroll-view>

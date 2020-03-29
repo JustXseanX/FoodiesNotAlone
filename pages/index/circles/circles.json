@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "好友分享",
   "usingComponents": {},
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": false,
+  "backgroundTextStyle": "dark",
+  "navigationStyle": "custom"
 }

@@ -1,0 +1,51 @@
+<view>
+  <view class="head">
+    <!-- icon -->
+    <view class='iconBar' style="height:{{statusBarHeight}}px"> </view>
+
+    <!-- 标题栏 -->
+    <view class='titleBar'>
+      <view class='title' style="font-size:{{fontSizeSetting}}px">
+        <label>攒局</label>
+      </view>
+      <view class='funcIcon'>
+        <view style='height:26px;width:26px;'>
+          <image bindtap='returnClick' style='height:26px;width:26px;' src='https://www.foodiesnotalone.cn/resources/UI/icon/return.png'></image>
+        </view>
+        <view bindtap='newEventClick' style='height:26px;width:26px;'>
+          <image style='height:26px;width:26px;' src='https://www.foodiesnotalone.cn/resources/UI/icon/add.png'></image>
+        </view>
+        <view bindtap='refreshClick' style='height:26px;width:26px;'>
+          <image style='height:26px;width:26px;' src='https://www.foodiesnotalone.cn/resources/UI/icon/refresh.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <scroll-view class='page' style='margin-top: {{statusBarHeight + 44}}px'>
+    <view wx:if='{{posts.length == 0}}' class='isempty'>
+      <text>暂时没有攒局可加入(●'◡'●)\n点击左上角创建一个吧！</text>
+    </view>
+    <view class='eventBlock' wx:for='{{posts}}' bindtap="detailClick" data-id='{{item.id}}'>
+      <view class='body-view'>
+        <view class='left-view'>
+          <image class='user-icon' src='https://www.foodiesnotalone.cn/resources/UI/icon/pin.png'></image>
+        </view>
+        <view class='right-view'>
+          <view class='user-name-view'>
+            <label class='user-name'>{{item.title}}</label>
+          </view>
+          <view class='user-content-view'>
+            <text class='user-content'>时间：{{item.date}} {{item.time}}</text>
+            <text class='user-content'>地址：{{item.address}}</text>
+            <text wx:if="{{item.isEnd}}" class='user-content align-right'>已结束</text>
+            <text wx:else class='user-content align-right'>还差{{item.morePeople}}人</text>
+          </view>                            
+        </view>
+        <view class='colorBlock' style="background-color: {{item.color}}"></view>
+      </view>
+      
+    </view>
+
+
+  </scroll-view>
+</view>

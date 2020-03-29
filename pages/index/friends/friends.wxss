@@ -1,5 +1,5 @@
 page{
-  background: #EFEFF4;
+  background: white;
 }
 .head{
   background: rgb(248, 242, 152);
@@ -13,6 +13,9 @@ page{
 }
 .bgf view:last-of-type{border: 0}
 .star{width: 32rpx;height:32rpx;border-radius: 50%}
+.user-name{
+  margin-left: 10rpx;
+}
 .user-avatar {
   border-right: 1px solid #eee;
   width: 100rpx;
@@ -24,4 +27,20 @@ page{
 }
 .groupName{
   height:70rpx;
+  padding-left: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 70rpx;
+  background-color: #EFEFF4;
+  border-radius: 10px;
+  margin: 0 0 5px 0;
+}
+
+.isempty{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 100%;
+  font-size: 15px;
 }

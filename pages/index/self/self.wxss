@@ -1,4 +1,4 @@
-/**index.wxss**/
+/**self.wxss**/
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -68,7 +68,9 @@
   height: 100rpx;
 }
 .icon_in{
-  margin: 11px;
+  width: 50rpx;
+  height: 50rpx;
+  margin: 25rpx;
 }
 .item{
   display: flex;
@@ -78,4 +80,124 @@
   border-bottom-style: solid;
   border-bottom-color: rgb(207, 205, 205);
   border-bottom-width: 1px;
+}
+
+
+.typeListBox{
+  z-index: 101;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 50rpx;
+  background: rgba(0,0,0,0.3);
+}
+.typeList{
+  /* margin-top: 200rpx; */
+  padding: 0 30rpx;
+  border-radius: 5px;
+  font-size: 13px;
+  background-color: #fff;
+}
+.nav{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.nav text{
+  padding: 20rpx;
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+}
+.nav text.active{
+  color: #000;
+  border-bottom: 1rpx solid #000;
+}.wrap{
+  padding: 20rpx 30rpx;
+  border-radius: 5px;
+  font-size: 13px;
+  background-color: #fff;
+  position: relative;
+}
+ 
+.checkbox-con{
+  margin: 50rpx auto;
+  text-align: center;
+  position: relative;
+}
+.checkbox-group view{
+  float: left;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20rpx 40rpx;
+  box-sizing: border-box;
+}
+.checkbox{
+  flex: 1;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 28rpx;
+  color: #888888;
+  border: 1rpx solid #CECECE;
+  border-radius: 5rpx;
+  /* display: inline-block; */
+  /* margin: 0 10rpx 30rpx 0; */
+  position: relative;
+}
+
+.checked{
+  color: #000;
+  background: rgba(49,165,253,0.08);
+  border: 1rpx dashed #000;
+}
+.checkbox checkbox{
+  display: none
+}
+.btn1{
+  display: flex;
+  flex-direction: row;
+}
+.btn1 button{
+  flex: 1;
+  background-color:transparent;
+  color: #000;
+  border: 1px solid #000; 
+}
+
+.func_text{
+  line-height: 100rpx;
+  width: 650rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.motto_edit{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  width: 650rpx;
+  height: 100rpx;
+  background-color: #CECECE;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.motto_edit_input{
+  width: 100%;
+}
+
+.motto_edit_button{
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 20px;
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #ea6156;
+  border-radius: 20rpx;
+  flex-shrink: 0
 }

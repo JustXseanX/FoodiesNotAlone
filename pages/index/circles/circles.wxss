@@ -1,26 +1,221 @@
-/* pages/index/circles/circles.wxss */
+/* pages/CircleFriends/CircleFriends.wxss */
+page{
+  background: whitesmoke;
+  margin-top: 12vh;
+}
 
-page {
-  background-color: #ffffff;
+.page{
+  width: 100%;
+  /* overflow-x: hidden */
 }
-.head{
-  background-color: #0aa02b;
+
+/* 列表 */
+.CircleList{
+  background: white;
+  margin-bottom: 1px;
+  border-bottom: 1px solid whitesmoke;
+  border-top: 1px solid whitesmoke;
+}
+
+.body-view{
+  display: flex;
+}
+
+.left-view{
+  width: 150rpx;
+  /* background: rebeccapurple; */
+}
+
+.right-view{
+  /* background: red; */
+}
+
+/* 头像 */
+.user-icon{
+  /* display: flex; */
+  width:100rpx;
   height: 100rpx;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+  margin-right: 20rpx;
 }
+
+/* 昵称 */
+.user-name{
+  display: flex;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 18px;
+  color: rgb(88, 103, 138);
+  margin-top: 30rpx;
+  margin-left: 10rpx;
+}
+
+/* 内容 */
+.user-content{
+  display: flex;
+  font-size: 18px;
+  line-height: 50rpx;
+  margin-left: 10rpx;
+}
+
+/* 图片 */
+.photo-view{
+  margin: 20rpx 0rpx 20rpx 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.photo{
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.photo image{
+  width: 100%;
+  height: 100%;
+}
+
+/* 地理位置 */
+.user-address-view{
+  display: flex;
+  margin-top: 20rpx;
+  width: 100%;
+}
+.user-address-view label{
+  font-size: 12px;
+  margin: 10rpx;
+}
+
+/* 时间、删除、点赞评论 */
+.TDD-view{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  background: white;
+}
+.TDD-view label{
+  font-size: 13px;
+  margin-left: 10rpx;
+  width: 400rpx;
+}
+.TDD-view button{
+  font-size: 13px;
+  margin-left: 20rpx;
+  color: black;
+  background: white;
+}
+.TDD-view button::after{
+  border: white;
+}
+.TDD-view image{
+  width: 50rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+/* 点赞 */
+.zan-view {
+  width: 100%;
+  background: white;
+  margin-bottom: 20rpx;
+}
+.trigon-view{
+  /* height: 20rpx; */
+  margin-bottom: -15rpx;
+}
+.trigon{
+  display: flex;
+  width: 40rpx;
+  height: 20rpx;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+}
+.zan-bg-view{
+  display: inline-block;
+  width: 97%;
+  background: rgb(235, 235, 235);
+  margin-right: 20rpx;
+  margin-bottom: -11rpx;
+  border-top-left-radius: 7rpx;
+  border-top-right-radius: 7rpx;
+}
+.zan-user-view{
+  display: flex;
+  float: left;
+  height: 40rpx;
+  margin-left: 10rpx;
+  /* margin-top: 5rpx; */
+  align-content: center;
+}
+.zan-user{
+  font-size: 12px;
+  line-height: 40rpx;
+  height: 40rpx;
+  color: rgb(88, 103, 138);
+}
+
+.line{
+  width: 97%;
+  height: 1px;
+  background: white;
+}
+
+/* 评论 */
+.discuss-view{
+  background: white;
+  width: 97%;
+}
+
+.discuss{
+  background: rgb(235, 235, 235);
+  line-height: 35rpx;
+}
+
+.discuss label{
+  font-size: 12px;
+}
+
+.discuss-user{
+  color: rgb(88, 103, 138);
+  margin-left: 10rpx;
+}
+
+.content{
+  margin-left: 10rpx;
+}
+
+/* 弹出框 */
+.pop-up-box{
+  position: absolute;
+  height: 60rpx;
+  border-radius: 10rpx;
+  right: 90rpx;
+  background: rgba(0, 0, 0, 0.7)
+}
+
+.like{
+  margin-left:70px;
+  height:25px;
+  width:25px;
+}
+
+
 .inputRoom {
-  width: 100vw;
-  height: 16vw;
+  width: 100%;
+  height: 10%;
   border-top: 1px solid #cdcdcd;
   background-color: #f1f1f1;
   position: fixed;
   bottom: 0;
   display: flex;
   align-items: center;
-  z-index: 20;
 }
 
 input {
-  width: 76vw;
+  width: 80%;
   height: 9.33vw;
   background-color: #fff;
   border-radius: 40rpx;
@@ -29,71 +224,106 @@ input {
   font-size: 28rpx;
   color: #444;
 }
-
-.leftMsg {
-  font-size: 35rpx;
-  color: #444;
-  line-height: 7vw;
-  padding: 2vw 2.5vw;
-  background-color: #fff;
-  margin-left: -1.6vw;
-  border-radius: 10rpx;
-  z-index: 10;
-}
-
-.rightMsg {
-  font-size: 35rpx;
-  color: #444;
-  line-height: 7vw;
-  padding: 2vw 2.5vw;
-  background-color: #96EB6A;
-  margin-right: -1.6vw;
-  border-radius: 10rpx;
-  z-index: 10;
-  word-wrap: break-word;
-  word-break: break-all;
-  overflow: hidden;
-}
 .but{
+  width: 20%;
   font-size: 35rpx;
   color: #444;
   line-height: 7vw;
   padding: 2vw 2.5vw;
 }
-.time{
-  font-size: 35rpx;
-  color: #444;
-  line-height: 7vw;
-  padding: 2vw 2.5vw;
-  background-color: #fff;
-  border-radius: 10rpx;
-  z-index: 10;
-  left: 100vw;
-}
-.love{
-  width: 8vw;
-  height: 8vw;
-}
-.btn1{
-  background-color:white;
-}
-.image{
-  width:31%;
-  height: 100px;
-  padding: 2px
-}
- 
-.moment_img{
-  width: 65px;
-  height: 65px;
-}
- 
-.image_content{
+
+
+.iconBar{
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px
 }
-button::after{
-  border: none;
+
+.titleBar{
+  height: 44px;
+  width: 100%;
+}
+
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  position: absolute;
+  height: 44px;
+  width: 100%;
+}
+
+.newShare{
+  position: absolute;
+  left: 0;
+  height: 44px;
+  width: 44px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.head{
+  background-color: #ea6156;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+
+
+/*新添*/
+.navbar{
+  flex: none;
+  display: flex;
+  background: #fff;
+  font-size: 30rpx;
+  color: #bbbbbb;
+}
+.navbar .item{
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 90rpx;
+}
+.navbar .item.active{
+  color: #ea6156;
+}
+.navbar .item.active:after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5rpx;
+  background: #ea6156;
+}
+.info{
+ display:flex;
+ margin-top: 250rpx;
+ justify-content: center;
+ align-items:center;
+ flex-direction: column;
+}
+.info image { 
+  width:300rpx;
+  height:300rpx;
+}
+.info text {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  color: #ea6156;
+}
+
+.funcIcon{
+  display: flex;
+  height: 44px;
+  align-items: center;
+
+  position: absolute;
+  left: 0;
 }

@@ -1,4 +1,8 @@
 <!--pages/functions/foodMap/foodMap.wxml-->
 <view class='container'>
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" bindregionchange="regionChange" bindmarkertap="mapMarkerClick" scale="{{scale}}" show-scale="true"  show-location="true" enable-zoom="true" markers="{{markers}}"></map>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" bindregionchange="regionChange" bindmarkertap="mapMarkerClick" scale="{{scale}}" show-scale="true"  show-location="true" enable-zoom="true" markers="{{markers}}">
+    <cover-view class='cover'>
+      <cover-image src="https://www.foodiesnotalone.cn/resources/UI/icon/locate.png" bindtap="resetPos"></cover-image>
+    </cover-view>
+  </map>
 </view>

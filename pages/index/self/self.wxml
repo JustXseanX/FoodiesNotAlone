@@ -1,3 +1,4 @@
+<!--头像名称-->
 <view class="header">
   <view class="userinfo">
       <open-data type="userAvatarUrl" class="userinfo-avatar" ></open-data>
@@ -13,54 +14,69 @@
     </view>
   </view>
 </view>
+<!--标签显示-->
 <view class="my_border">
-  <!--
-  <view class="title_pre">我的喜好</view>
-  -->
   <view class="prefer">
-    <block wx:key wx:for='{{preference}}'>
-      <view class="prefer_index">
-        <view style="margin:20rpx">{{item}}</view> 
+    <block wx:key="id" wx:for='{{preference}}'>
+      <view class="prefer_index" wx:if='{{item.checked}}'>
+        <view style="margin:20rpx">{{item.name}}</view> 
       </view>
     </block>
-    <view class="prefer_index" style="border-style:dashed;border-width:1px ">
+    <view bindtap="add_index"  class="prefer_index" style="border-style:dashed;border-width:1px ">
       <view  style=" margin:20rpx">编辑</view>
     </view>
   </view>
 </view>
-<view style="display:flex;flex-direction:row" >
+<!--标签列表-->
+<view class='typeListBox' wx:if="{{isDep}}">
+  <view class='wrap'>
+    <view class='nav'>
+      <text class='active'>编辑我的标签</text>
+    </view>
+    <view class='checkbox-con'>
+      <scroll-view scroll-y style="height: 700rpx;" scroll-top="{{scrollTop}}">
+        <checkbox-group class="checkbox-group">
+          <view wx:for="{{preference}}" wx:key="name">
+            <label class="{{item.checked?'checkbox checked':'checkbox'}}" bindtap='checkbox' data-index="{{index}}">
+              <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+            </label>
+          </view>
+        </checkbox-group>
+      </scroll-view>
+    </view>
+    <view class='btn1'>
+      <button class='' bindtap='confirm'>确定</button>
+    </view>
+  </view>
+</view>
+<!--收藏、钱包、足迹、签名等-->
+<view style="display:flex;flex-direction:row" bindtap="myCollectionClick">
   <view class="icon_out">
-    <image class="icon_in" style="width:20px;height:20px" src="https://www.foodiesnotalone.cn/resources/UI/icon/love.png"></image>
+    <image class="icon_in" src="https://www.foodiesnotalone.cn/resources/UI/icon/love.png"></image>
   </view>
   <view class="item">
-    <text style="display: flex;justify-content: flex-start;margin-top:10px">我的收藏</text>
-    <text style="display: flex;justify-content: flex-end;flex-grow: 1;color: #ccc;margin-right: 20rpx;margin-top:10px">></text>
+    <text class="func_text">我的收藏</text>
+  </view>
+</view>
+<view style="display:flex;flex-direction:row" bindtap="myFootstepClick">
+  <view class="icon_out">
+    <image class="icon_in" src="https://www.foodiesnotalone.cn/resources/UI/icon/claw.png"></image>
+  </view>
+  <view class="item">
+    <text class="func_text">我的足迹</text>
   </view>
 </view>
 <view style="display:flex;flex-direction:row" >
   <view class="icon_out">
-    <image class="icon_in" style="width:20px;height:20px" src="https://www.foodiesnotalone.cn/resources/UI/icon/wlt.png"></image>
+    <image class="icon_in" src="https://www.foodiesnotalone.cn/resources/UI/icon/pen.png"></image>
   </view>
-  <view class="item">
-    <text style="display: flex;justify-content: flex-start;margin-top:10px">我的钱包</text>
-    <text style="display: flex;justify-content: flex-end;flex-grow: 1;color: #ccc;margin-right: 20rpx;margin-top:10px">></text>
-  </view>
-</view>
-<view style="display:flex;flex-direction:row" >
-  <view class="icon_out">
-    <image class="icon_in" style="width:20px;height:20px" src="https://www.foodiesnotalone.cn/resources/UI/icon/claw.png"></image>
-  </view>
-  <view class="item">
-    <text style="display: flex;justify-content: flex-start;margin-top:10px">我的足迹</text>
-    <text style="display: flex;justify-content: flex-end;flex-grow: 1;color: #ccc;margin-right: 20rpx;margin-top:10px">></text>
-  </view>
-</view>
-<view style="display:flex;flex-direction:row" >
-  <view class="icon_out">
-    <image class="icon_in" style="width:20px;height:20px" src="https://www.foodiesnotalone.cn/resources/UI/icon/pen.png"></image>
-  </view>
-  <view class="item">
-    <text style="display: flex;justify-content: flex-start;margin-top:10px">个性签名：{{motto}}</text>
-    <text style="display: flex;justify-content: flex-end;flex-grow: 1;color: #ccc;margin-right: 20rpx;margin-top:10px">></text>
+  <view class="item" bindtap="myMottoClick">
+    <text class="func_text">个性签名：{{motto}}</text>
+    <view class='motto_edit' hidden="{{!isMottoEdit}}">
+      <input class='motto_edit_input' type='text' value='{{motto}}' bindinput="mottoChange"/>
+      <view class='motto_edit_button' bindtap="mottoConfirmClick">
+        <image class="icon_in" src="https://www.foodiesnotalone.cn/resources/UI/icon/tick.png"></image>
+      </view>
+    </view>
   </view>
 </view>

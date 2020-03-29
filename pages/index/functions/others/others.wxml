@@ -1,0 +1,3 @@
+<!--pages/index/functions/others/others.wxml-->
+<text>pages/index/functions/others/others.wxml</text>
+<button bindtap="test" style="width:200rpx; height: 200rpx;">测试</button>

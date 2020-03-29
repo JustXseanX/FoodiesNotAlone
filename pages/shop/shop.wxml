@@ -1,0 +1,8 @@
+<!--pages/shop/shop.wxml-->
+<view class="title">
+  <view class="ti_border" > 
+    <image class="icon" src='{{shopInfo.img_src}}'></image>
+  </view>
+  <view class="name">{{shopInfo.name}}</view>
+  <view class="address">地址：{{shopInfo.address}}</view>
+</view>

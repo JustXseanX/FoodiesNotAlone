@@ -11,14 +11,13 @@
 }
  
 .image{
-  width:31%;
-  height: 100px;
-  padding: 2px
+  width: 220rpx;
+  height: 220rpx;
 }
  
 .moment_img{
-  width: 98px;
-  height: 98px;
+  width: 200rpx;
+  height: 200rpx;
 }
  
 .image_content{

@@ -1,0 +1,19 @@
+<!--pages/store/storeList.wxml-->
+<view wx:if='{{isEmpty}}' class='emptyTip'>暂时什么都没有哦(●'◡'●)</view>
+<scroll-view wx:else scroll-y>
+  <block  wx:key wx:for='{{Restaurant}}'>
+    <view class="item" bindtap="details" data-id="{{item.id}}">
+      <image class="img" src="{{item.img_src}}"></image>
+      <view class="attrib">
+        <view class="subitem">{{item.name}}</view>
+        <view class="subitem">
+          <image style="width:16px;height:16px" src="https://www.foodiesnotalone.cn/resources/UI/icon/fire2.png"></image>
+          <text style="font-size:13px">热度：{{item.heat}}</text>
+        </view>
+        <view class="sub_item">
+          <text style="font-size:13px">  地址：{{item.address}}</text>
+        </view>
+      </view>
+    </view>  
+  </block>
+</scroll-view>

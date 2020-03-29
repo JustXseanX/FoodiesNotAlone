@@ -112,6 +112,14 @@ Page({
     this.setData({
       sayingContent: ''
     })
+
+    var pages = getCurrentPages(); //当前页面栈
+    var beforePage = pages[pages.length - 2]; //前一页
+    wx.navigateBack({
+      success: function () {
+        beforePage.getFriendsCircle(); // 刷新朋友圈
+      }
+    });
     wx.navigateBack({
       delta: 1
     })

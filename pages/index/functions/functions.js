@@ -14,14 +14,10 @@ Page({
   onLoad: function (options) {
     var funcList = [
       {
-        iconPath: '/resources/UI/icon/func_share_circle.png',
-        funcName: '分享圈',
-        url: './shareCircle/shareCircle'
-      },
-      {
         iconPath: '/resources/UI/icon/func_recommend.png',
         funcName: '美食推荐',
-        url: './'
+        //url: './foodRecommend/foodRecommend'
+        url: '/pages/store/storeList?mode=foodRecommend'
       },
       {
         iconPath: '/resources/UI/icon/func_map.png',
@@ -31,32 +27,39 @@ Page({
       {
         iconPath: '/resources/UI/icon/func_route.png',
         funcName: '游玩路线',
-        url: './'
+        url: './routeArrange/selectRestriction'
       },
       {
         iconPath: '/resources/UI/icon/func_find_friends.png',
         funcName: '同好结交',
-        url: './'
+        url: './addFriend/addFriend'
       },
       {
-        iconPath: '/resources/UI/icon/func_food_search.png',
+        iconPath: '/resources/UI/icon/func_food_help.png',
         funcName: '辅助美食挑选',
-        url: './'
-      },
-
-      {
-        iconPath: '/resources/UI/icon/func_budget_match.png',
-        funcName: '预算匹配',
-        url: './'
+        url: './foodHelp/foodHelp'
       },
       {
-        iconPath: '/resources/UI/icon/func_others.png',
-        funcName: '其他', // 轰趴厨房、美食拓荒
-        url: './'
-      }
+        iconPath: '/resources/UI/icon/func_gather.png',
+        funcName: '攒局',
+        url: './gather/gather'
+      },
+      
+      // {
+      //   iconPath: '/resources/UI/icon/func_others.png',
+      //   funcName: '其他', // 轰趴厨房、美食拓荒
+      //   url: ''
+      // }
     ]
     this.setData({
       funcList: funcList
+    })
+  },
+
+  clickOther: function(e){
+    wx.showToast({
+      title: '其他功能还在开发中！',
+      icon: 'none'
     })
   },
 

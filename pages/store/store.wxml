@@ -1,0 +1,25 @@
+<!--pages/store/storeInfo.wxml-->
+<view class="title">
+  <view class="ti_border" > 
+    <image class="icon" src='{{restInfo.img_src}}'></image>
+    <view bindtap='clickCollect' class='btn'>
+        <image wx:if="{{restInfo.isCollected}}" class='star' src='https://www.foodiesnotalone.cn/resources/UI/icon/collected.png'></image>   
+        <image wx:else class='star' src='https://www.foodiesnotalone.cn/resources/UI/icon/uncollected.png'></image>
+    </view>
+  </view>
+  <view class="name">{{restInfo.name}}</view>
+  <view class="heat">热度：{{restInfo.heat}}</view>
+  <view class="address">地址：{{restInfo.address}}</view>
+  
+</view>
+<view class="container">
+  <view class="item-content">
+    <view class="box">
+      <view class="item" wx:for="{{items}}" wx:key="{{item.id}}">
+        <image src="{{item.img_src}}"></image>
+        <text class="title">{{item.title}}</text>
+        <text class="price">￥ {{item.price}} 元</text>
+      </view>
+    </view>
+  </view>
+</view>

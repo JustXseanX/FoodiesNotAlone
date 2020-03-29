@@ -1,0 +1,50 @@
+<!--pages/index/functions/routeArrange/routeArrange.wxml-->
+<view class='container'>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" show-location="true" enable-zoom="true" style="width:100%; height:100%;" markers="{{markers}}" bindmarkertap="mapMarkerClick" polyline="{{polylines}}">
+    <cover-view class='cover_button' bindtap="isDep">详情</cover-view>
+  </map>
+
+
+  <view class='typeListBox' wx:if="{{isDep}}">
+    <view class='wrap'>
+      <view class='nav'>
+        <text class='active'>路线规划</text>
+      </view>
+      <view class='checkbox-con'>
+        <scroll-view scroll-y style="height: 700rpx;" scroll-top="{{scrollTop}}">
+          <block wx:key wx:for='{{arrangeList}}'>
+            <view class="item" bindtap='routeShopClick' data-id="{{item.id}}">
+              <view class="line">
+                <image style="height:85%; width:85%; margin-top:5px" src="https://www.foodiesnotalone.cn/resources/UI/icon/route.png"></image>
+                <view wx:if="{{item.nextStat!=''}}" >{{item.nextStat}}km</view>
+                <view wx:else>结束</view>
+              </view>
+              <view class="line2">
+                <view style="display: flex;flex-direction: row">
+                  <view class="stop_head">第{{index+1}}站</view>
+                  <view class="shop_name">{{item.name}}</view>
+                </view>
+                <view style="display: flex;flex-direction: row;margin:5px 5px 0 5px">
+                  <text style="font-size:12px;">计划时间：</text>
+                  <view style="font-size:11px;">{{item.time}}</view>
+                </view>
+                <view style="display: flex;flex-direction: row;margin:5px 5px 0 5px">
+                  <text style="font-size:12px;">平均消费：￥</text>
+                  <view style="font-size:11px;">{{item.avgPrice}}</view>
+                </view>
+                <view class="fill"></view>
+              </view>
+              <view>
+                <image class="imag" src="{{item.img_src}}"></image>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+      <view class='btn1'>
+        <button class='' bindtap='confirm'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+

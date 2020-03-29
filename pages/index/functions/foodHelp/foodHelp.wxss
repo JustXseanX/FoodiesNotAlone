@@ -1,0 +1,70 @@
+/* pages/index/functions/foodHelp/foodHelp.wxss */
+
+
+.checkbox-group view{
+  display: inline-block;
+  margin: 0px 14rpx;
+  height: 100%;
+  box-sizing: border-box;
+  
+}
+.checkbox{
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #000;
+  background-color: #fff;
+  border: 1rpx solid transparent;
+  border-radius: 5rpx;
+  position: relative;
+  padding: 20rpx 10rpx;
+}
+
+.checked{
+  color: #000;
+  background: rgba(49,165,253,0.08);
+  border: 1rpx dashed #000;
+}
+.checkbox checkbox{
+  display: none
+}
+.prefer{
+  margin-top: 1px;
+  background-color: rgb(245, 238, 238);
+  height: 100rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  width: 100%;
+
+}
+.prefer checkbox-group{
+  height: 100%;
+}
+.prefer_index{
+  background-color: rgb(255, 255, 255);
+  border-width: 3px;
+  margin: 15rpx;
+  border-radius: 3px;
+  border-color: #000;
+}
+.item{
+  display: flex;
+  flex-direction: row;
+}
+.img{
+  width: 180rpx;
+  height: 180rpx;
+  margin: 25rpx; 
+  flex-shrink: 0;
+}
+.attrib{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20rpx;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(207, 205, 205);
+  border-bottom-width: 1px;
+}
+.sub_item{
+  margin: 5px;
+}

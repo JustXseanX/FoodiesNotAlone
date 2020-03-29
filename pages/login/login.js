@@ -18,6 +18,7 @@ Page({
           userImg: res.userInfo.avatarUrl
         })
         //更新用户信息
+        app.globalData.userInfo = res.userInfo //设置全局变量
         wx.request({
           url: 'https://www.foodiesnotalone.cn/friendService.php',
           data: {
@@ -25,9 +26,9 @@ Page({
             'session3rd': wx.getStorageSync('session3rd'),
             'userInfo': res.userInfo
           },
-          method: 'GET',
+          method: 'POST',
           success(res) {
-            console.log("本地：服务器内用户信息更新成功")
+            console.log("本地：服务器内用户信息更新成功", res)
             // 跳转到主页
             setTimeout(function () {
               wx.reLaunch({

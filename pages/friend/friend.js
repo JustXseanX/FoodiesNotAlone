@@ -35,6 +35,10 @@ Page({
 
   onPullDownRefresh: function () {
     this.getFriendInfo()
+    wx.stopPullDownRefresh()
+    wx.showToast({
+      title: '已刷新'
+    })
   },
 
   getFriendInfo: function() {

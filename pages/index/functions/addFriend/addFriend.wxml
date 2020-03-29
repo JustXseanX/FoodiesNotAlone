@@ -1,0 +1,21 @@
+<!--pages/index/functions/foodHelp/foodHelp.wxml-->
+<view class="hint">
+  系统会自动推荐喜好相似的人哦
+</view>
+<view wx:if='{{Person.length == 0}}' class='emptyTip'>加载中...</view>
+<scroll-view scroll-y> 
+  <block wx:key wx:for='{{Person}}'>
+    <view class="item" bindtap="details" data-id="{{item.id}}">
+      <image class="img" src="{{item.img_src}}"></image>
+      <view class="attrib">
+        <view class="">{{item.name}}</view>
+        <view class="">
+          <text style="font-size:13px">{{item.sex}}</text>
+        </view>
+        <view class="">
+          <text style="font-size:13px">签名：{{item.motto}}</text>
+        </view>
+      </view>
+    </view>  
+  </block>
+</scroll-view>

@@ -1,10 +1,27 @@
-/* pages/functions/sharedCircle/sharedCircle.wxss */
-page {
-  background-color: #ffffff;
+
+.container{
+  padding: 0;
+  height: 100vh;
 }
-.head{
-  background-color: #0aa02b;
-  height: 100rpx;
+.block{
+  bottom: 0;
+  border: 1rpx solid black;
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+}
+.inputBox{
+  background-color: #af0;
+  width: 85%;
+}
+.inputBoxButton{
+  background-color: #0af;
+  width: 15%;
+}
+
+page {
+  background-color: #f1f1f1;
 }
 .inputRoom {
   width: 100vw;
@@ -15,7 +32,7 @@ page {
   bottom: 0;
   display: flex;
   align-items: center;
-  z-index: 20;
+  z-index: 2;
 }
 
 input {
@@ -37,7 +54,10 @@ input {
   background-color: #fff;
   margin-left: -1.6vw;
   border-radius: 10rpx;
-  z-index: 10;
+  z-index: 1;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
 }
 
 .rightMsg {
@@ -48,51 +68,53 @@ input {
   background-color: #96EB6A;
   margin-right: -1.6vw;
   border-radius: 10rpx;
-  z-index: 10;
+  z-index: 1;
   word-wrap: break-word;
   word-break: break-all;
   overflow: hidden;
 }
+
 .but{
   font-size: 35rpx;
   color: #444;
   line-height: 7vw;
   padding: 2vw 2.5vw;
 }
-.time{
-  font-size: 35rpx;
-  color: #444;
-  line-height: 7vw;
-  padding: 2vw 2.5vw;
-  background-color: #fff;
-  border-radius: 10rpx;
-  z-index: 10;
-  left: 100vw;
-}
-.love{
-  width: 8vw;
-  height: 8vw;
-}
-.btn1{
-  background-color:white;
-}
-.image{
-  width:31%;
-  height: 100px;
-  padding: 2px
-}
- 
-.moment_img{
-  width: 65px;
-  height: 65px;
-}
- 
-.image_content{
+
+.iconBar{
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px
 }
-button::after{
-  border: none;
+
+.titleBar{
+  height: 44px;
+  width: 100%;
+}
+
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  position: absolute;
+  height: 44px;
+  width: 100%;
+}
+
+.head{
+  background-color: #ea6156;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 3;
+}
+
+.funcIcon{
+  display: flex;
+  height: 44px;
+  align-items: center;
+
+  position: absolute;
+  left: 0;
 }

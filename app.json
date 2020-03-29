@@ -9,14 +9,26 @@
     "pages/logs/logs",
     "pages/scan/scan",
     "pages/chat/chat",
+    "pages/groupChat/groupChat",
     "pages/index/functions/functions",
     "pages/index/functions/foodMap/foodMap",
-    "pages/index/functions/shareCircle/shareCircle",
-    "pages/store/storeInfo",
-    "pages/friend/friend"
+    "pages/index/functions/routeArrange/selectRestriction",
+    "pages/index/functions/routeArrange/routeArrange",
+    "pages/index/functions/foodHelp/foodHelp",
+    "pages/index/functions/addFriend/addFriend",
+    "pages/index/functions/gather/gather",
+    "pages/index/functions/gather/event/event",
+    "pages/index/functions/gather/event/addEvent",
+    "pages/index/functions/gather/event/editEvent",
+    "pages/index/functions/others/others",
+    "pages/store/store",
+    "pages/store/storeList",
+    "pages/friend/friend",
+    "pages/group/group",
+    "pages/shop/shop"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ea6156",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "white"
@@ -26,16 +38,16 @@
     "selectedColor": "#ea6156",
     "list": [
       {
+        "pagePath": "pages/index/circles/circles",
+        "iconPath": "resources/UI/icon/circle1.png",
+        "selectedIconPath": "resources/UI/icon/circle2.png",
+        "text": "分享"
+      },
+      {
         "pagePath": "pages/index/friends/friends",
         "iconPath": "resources/UI/icon/friend1.png",
         "selectedIconPath": "resources/UI/icon/friend2.png",
         "text": "好友"
-      },
-      {
-        "pagePath": "pages/index/circles/circles",
-        "iconPath": "resources/UI/icon/circle1.png",
-        "selectedIconPath": "resources/UI/icon/circle2.png",
-        "text": "动态"
       },
       {
         "pagePath": "pages/index/functions/functions",

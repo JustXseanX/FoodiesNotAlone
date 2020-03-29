@@ -1,4 +1,5 @@
 <!--pages/functions/functions.wxml-->
+
 <view class='container'>
   <image class='bg' src='https://www.foodiesnotalone.cn/resources/UI/food1.jpg'></image>
   <view class='func-table'>
@@ -6,5 +7,10 @@
       <image src='{{item.iconPath}}'></image>
       <view>{{item.funcName}}</view>
     </view>
+    <view class='func' bindtap="clickOther">
+      <image src='/resources/UI/icon/func_others.png'></image>
+      <view>其他</view>
+    </view>
+    
   </view>
 </view>

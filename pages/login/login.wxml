@@ -1,4 +1,4 @@
-<!--index.wxml-->
+ <!--index.wxml-->
 <view class="container">
   <view class="body">
     <image class="bg_img" src="https://www.foodiesnotalone.cn/resources/UI/login.jpg"></image>

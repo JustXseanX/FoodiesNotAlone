@@ -1,0 +1,68 @@
+
+<view class='body-view'>
+<!--基本信息-->
+  <view>
+    <!--头像昵称标题-->
+    <view style="display:flex;flex-direction:row">
+      <view class='left-view'>
+        <image class='user-icon' src='{{eventInfo.owner.userImg}}'></image>
+      </view>
+      <view class='right-view'>
+        <view class='user-name-view'>
+          <label class='user-name'>{{eventInfo.owner.userName}}</label>
+        </view>
+        <view class='user-content-view'>
+          <text class='user-content'>{{eventInfo.title}}</text>
+        </view>
+      </view>
+    </view>
+    <!--详情及图片-->
+    <view class='photo-view'>
+      <view class='user-content-view' style="text-indent:1em;">
+        <text class='user-content-detail'>{{eventInfo.detail}}</text>
+      </view>
+      <view class='photo' wx:for='{{eventInfo.imgsList}}' wx:for-item="dimg">
+          <image bindtap='LookPhoto' data-src='{{dimg}}' data-list='{{eventInfo.imgsList}}' src='{{dimg}}' ></image>
+      </view>
+    </view>
+    <!--日期-->
+    <view style="display:flex;flex-direction:row;margin-left:60rpx;margin-top:40rpx">
+        <image style="width:45rpx;height: 45rpx;" src="https://www.foodiesnotalone.cn/resources/UI/icon/date.png"></image>
+        <label class='user-content-detail' style="margin-left:10rpx">日期：{{eventInfo.date}}</label>
+    </view>
+    <!--时间-->
+    <view style="display:flex;flex-direction:row;margin-left:60rpx;margin-top:40rpx">
+        <image style="width:45rpx;height: 45rpx;" src="https://www.foodiesnotalone.cn/resources/UI/icon/time2.png"></image>
+        <label class='user-content-detail' style="margin-left:10rpx">时间：{{eventInfo.time}}</label>
+    </view>
+    <!--地点-->
+    <view style="display:flex;flex-direction:row;margin-left:60rpx;margin-top:40rpx">
+        <image style="width:45rpx;height: 45rpx;" src="https://www.foodiesnotalone.cn/resources/UI/icon/location.png"></image>
+        <label class='user-content-detail' style="margin-left:10rpx">坐标：{{eventInfo.address}}</label>
+    </view>
+    <!--预计人数-->
+    <view style="display:flex;flex-direction:row;margin-left:60rpx;margin-top:40rpx">
+        <image style="width:45rpx;height: 45rpx;" src="https://www.foodiesnotalone.cn/resources/UI/icon/people.png"></image>
+        <label class='user-content-detail' style="margin-left:10rpx">预计人数：{{eventInfo.already}}/{{eventInfo.sumPeople}}</label>
+    </view>
+  </view>
+<!--已加入人群-->
+  <view class='zan-bg-view'>
+    <view class='zan-user'>已有</view>
+    <view class='zan-user-view' wx:for='{{eventInfo.AList}}'>
+      <label bindtap='TouchZanUser' data-name='{{item}}' class='zan-user'>{{item.userName}} </label>
+    </view>
+    <view class='zan-user-view'>
+      <label class='zan-user'>等{{eventInfo.already}}人参加</label>
+    </view>
+  </view>
+  
+
+</view>
+<!--按钮-->
+  <view class='changeStateButtonBlock'>
+    <button wx:if="{{eventInfo.userState=='0'}}" bindtap='editEvent' class='changeStateButton' style="background: #7cc2ff;">修改</button>
+    <button wx:if="{{eventInfo.userState=='1'}}" bindtap='changeEventState' class='changeStateButton' style="background: #97d8a0;">立即加入</button>
+    <button wx:if="{{eventInfo.userState=='2'}}" bindtap='changeEventState' class='changeStateButton' style="background: #ff919d;">退出</button>
+    <button wx:if="{{eventInfo.userState=='3'}}" class='changeStateButton' style="background: #bbbbbb;">已结束</button>
+  </view>

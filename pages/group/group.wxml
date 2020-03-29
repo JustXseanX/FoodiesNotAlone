@@ -1,0 +1,29 @@
+<!--pages/group/group.wxml-->
+<view class="header">
+  <view class="userinfo">
+      <image src="{{image}}" class="userinfo-avatar" ></image>
+  </view >
+  <view class="userinfo-nickname">
+    <view class="inform">
+      <view style="font-size:25px" >
+        {{name}}
+      </view >
+      <view style=" margin-top:10rpx;font-size:20px;color:black">
+        组
+      </view>
+    </view>
+  </view>
+</view>
+<view class="memberBlock">
+  <view wx:for='{{memberList}}' wx:for-item="member" wx:key='id' class='userBlock' bindtap="clickAvatar" data-id='{{member.id}}'>
+    <view class='userBlockImg'>
+      <image src="{{member.userImg}}"></image>
+    </view>
+    <view class='userBlockName'>
+      {{member.userName}}
+    </view>
+  </view>
+</view>
+<view class="box">
+  <button class="btn" bindtap="changeInGroupState" style="{{buttonColor}}">{{inGroupStateText}}</button>
+</view>

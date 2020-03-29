@@ -1,0 +1,26 @@
+/* pages/store/storeList.wxss */
+.emptyTip{
+  text-align: center;
+}
+.item{
+  display: flex;
+  flex-direction: row;
+}
+.img{
+  width: 180rpx;
+  height: 180rpx;
+  flex-shrink: 0;
+  margin: 30rpx; 
+}
+.attrib{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20rpx;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(207, 205, 205);
+  border-bottom-width: 1px;
+}
+.sub_item{
+  margin: 5px;
+}

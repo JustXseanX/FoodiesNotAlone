@@ -54,15 +54,15 @@ Page({
 
   onReady: function () {
     var that = this
-    wx.onSocketMessage(function (res) {
-      var obj = JSON.parse(res.data)
-      if (obj.opcode == "tips")
-        console.log("服务器WebSocket：", obj.text)
-      else {
-        console.log("收到服务器WebSocket未知消息：", obj)
-      }
+    // wx.onSocketMessage(function (res) {
+    //   var obj = JSON.parse(res.data)
+    //   if (obj.opcode == "tips")
+    //     console.log("服务器WebSocket：", obj.text)
+    //   else {
+    //     console.log("收到服务器WebSocket未知消息：", obj)
+    //   }
 
-    })
+    // })
     // 滑动到最底部
     this.scrollToBottom();
   },
@@ -81,18 +81,22 @@ Page({
       success(res) {
         //console.log("服务器：", res.data)
         //显示消息
-        if (res.data.data.length > 0) console.log("本地：从服务器接受消息", res.data.data)
-        var msgList = that.data.msgList
-        res.data.data.forEach(function (message) {
-          app.globalData.messagesList[message.fromId].push({
-            speaker: 'server',
-            contentType: 'text',
-            text: message.text
+        if (res.data.data.length > 0) {
+          console.log("本地：从服务器接受消息", res.data.data)
+          var msgList = that.data.msgList
+          res.data.data.forEach(function (message) {
+            app.globalData.messagesList[message.fromId].push({
+              speaker: 'server',
+              contentType: 'text',
+              text: message.text
+            })
           })
-        })
-        that.setData({
-          msgList: app.globalData.messagesList[that.data.targetUserId]
-        })
+          that.setData({
+            msgList: app.globalData.messagesList[that.data.targetUserId]
+          })
+          // 滑动到最底部
+          that.scrollToBottom();
+        }
       }
     })
 
@@ -166,6 +170,7 @@ Page({
       msgList: msgList
     })
     app.globalData.messagesList[that.data.targetUserId] = msgList;
+    this.scrollToBottom();
   },
 
   toBackClick: function () {
@@ -184,5 +189,20 @@ Page({
       toView: 'msg-' + (that.data.msgList.length - 1),
     })
   },
+
+  clickAvatar: function (e) {
+    var that = this
+    if (e.currentTarget.dataset.own == 'friend'){
+      wx.navigateTo({
+        url: '/pages/friend/friend?id=' + that.data.targetUserId
+      })
+    }
+    else if (e.currentTarget.dataset.own == 'self'){
+      wx.navigateTo({
+        url: '/pages/friend/friend?id=' + app.globalData.userId
+      })
+    }
+    
+  }
 })
 

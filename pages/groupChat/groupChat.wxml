@@ -1,0 +1,63 @@
+<!-->
+<view class='container'>
+
+  <view class='block'>
+    <input class='inputBox' bindinput='inputUpdate' value='{{inputText}}' maxlength='50'></input>
+    <view class='inputBoxButton' bindtap='sendMessage'>发送</view>
+  </view>
+</view>
+-->
+
+
+<view>
+  <view class="head">
+    <!-- icon -->
+    <view class='iconBar' style="height:{{statusBarHeight}}px"> </view>
+
+    <!-- 标题栏 -->
+    <view class='titleBar'>
+      <view class='title' style="font-size:{{fontSizeSetting}}px">
+        <label>{{title}}</label>
+      </view>
+      <view class='funcIcon'>
+        <view style='height:26px;width:26px;'>
+          <image bindtap='returnClick' style='height:26px;width:26px;' src='https://www.foodiesnotalone.cn/resources/UI/icon/return.png'></image>
+        </view>
+        <view style='height:26px;width:26px;'>
+          <image bindtap='detailClick' style='height:26px;width:26px;' src='https://www.foodiesnotalone.cn/resources/UI/icon/detail.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <scroll-view id='scroll' scroll-y scroll-into-view='{{toView}}' style='height: {{scrollHeight}}; margin-top: {{statusBarHeight + 44}}px'>
+    <!-- <view class='scrollMsg'> -->
+    <block wx:key wx:for='{{msgList}}' wx:for-index="index">
+      <view wx:if='{{item.speaker=="server"}}' id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+        <view style=' height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; '>
+          <image style='width: 11vw;height: 11vw; border-radius: 10rpx;' src='{{item.userImg}}' bindtap="clickAvatar" data-own="friend"></image>
+        </view>
+        <view style='width:4vw;height:11vw'></view>
+        <view class='leftMsg'>{{item.text}}</view>
+      </view>
+      <view wx:else id='msg-{{index}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+        <view class='rightMsg'>{{item.text}}</view>
+        <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center;'>
+          <view style='width: 4vw;' ></view>
+        </view>
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{cusHeadIcon}}' bindtap="clickAvatar" data-own="self"></image>
+        </view>
+      </view>
+
+    </block>
+    <view style='width: 100%; height: 18vw;'></view>
+  </scroll-view>
+
+  <view class='inputRoom' style='bottom: {{inputBottom}}'>
+    <input bindconfirm='sendClick' adjust-position='{{false}}' value='{{inputVal}}' bindfocus='focus' bindblur='blur' bindinput='updateInput'></input>
+    <button class='but' bindtap='sendClick' adjust-position='{{false}}'  bindfocus='focus' bindblur='blur'>
+      <text >发送</text>
+    </button>
+  </view>
+</view>
+

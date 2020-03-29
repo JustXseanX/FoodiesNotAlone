@@ -1,6 +1,7 @@
 // pages/functions/foodMap/foodMap.js
 var QQMapWX = require('../../../../libs/qqmap-wx-jssdk.js');
 var qqmapsdk;
+var map;
 
 Page({
 
@@ -9,6 +10,7 @@ Page({
    */
   data: {
     scale: 16,
+    markers: [],
     // markers: [{
     //   iconPath: "/resources/UI/icon/mark.png",
     //   id: 0,
@@ -86,6 +88,11 @@ Page({
     
   },
 
+  onReady: function(){
+    // 初始化MapContext
+    map = wx.createMapContext('map')
+  },
+
   updateRestList() {
     var that = this
     console.log('la: ' + this.data.latitude + ', long: ' + this.data.longitude)
@@ -105,12 +112,12 @@ Page({
         res.data.storesList.forEach(function (storeInfo) {
           var newMarker = {};
           newMarker.iconPath = "/resources/UI/icon/mark.png"
-          newMarker.id = id++
-          newMarker.storeId = storeInfo.id
+          newMarker.id = storeInfo.id
           newMarker.latitude = storeInfo.latitude
           newMarker.longitude = storeInfo.longitude
           newMarker.width = Math.min(storeInfo.heat / 200, 40)
           newMarker.height = Math.min(storeInfo.heat / 200, 40)
+          newMarker.anchor = { x: 0.5, y: 0.5 }
           // newMarker.callout = {}
           // newMarker.callout.content = storeInfo.name
           // newMarker.callout.padding = 10
@@ -127,8 +134,7 @@ Page({
 
   regionChange(e) {
     var that = this
-    if (e.type == 'end' && e.causedBy == 'scale'){
-      var map = wx.createMapContext('map')
+    if (e.type == 'end' && (e.causedBy == 'scale' || e.causedBy == 'drag')){
       map.getCenterLocation({
         success(res) {
           that.data.centerLongitude = res.longitude
@@ -142,9 +148,21 @@ Page({
 
   mapMarkerClick(e) {
     console.log("本地：点击便签", e.markerId)
-    var storeId = this.data.markers[e.markerId].storeId
+    var storeId = e.markerId
     wx.navigateTo({
-      url: '/pages/store/storeInfo?storeId=' + storeId
+      url: '/pages/store/store?storeId=' + storeId,
     })
   },
+
+  resetPos() {
+    console.log("本地：回到定位点")
+    var that = this
+    map.moveToLocation({
+      longitude: that.data.longitude,
+      latitude: that.data.latitude
+    })
+    this.data.centerLatitude = this.data.latitude
+    this.data.centerLongitude = this.data.longitude
+    this.updateRestList();
+  }
 })
